@@ -40,3 +40,13 @@ Route::get( '/create', function () {
         'password' => Hash::make( 'abcd1234' ),
     ] );
 } );
+
+Route::get('/tokenc', function(){
+    $user = User::find(1);
+    $user->api_token = Str::random(80);
+    $user->save();
+
+    $user = User::find(2);
+    $user->api_token = Str::random(80);
+    $user->save();
+});
