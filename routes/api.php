@@ -15,23 +15,23 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware( 'auth:api' )->get( '/user', function ( Request $request ) {
     return $request->user();
-});
+} );
 
 Route::get( '/articles', [ArticleController::class, 'getAllArticles'] );
 Route::get( '/articles/{article}', [ArticleController::class, 'getArticle'] );
-Route::middleware('auth:api')->group(function(){
+Route::middleware( 'auth:api' )->group( function () {
     Route::post( '/articles', [ArticleController::class, 'createArticle'] );
     Route::put( '/articles/{id}', [ArticleController::class, 'updateArticle'] );
     Route::delete( '/articles/{id}', [ArticleController::class, 'deleteArticle'] );
-});
+} );
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware( 'auth:api' )->get( '/user', function ( Request $request ) {
     return $request->user();
-});
+} );
 
 Route::get( '/create', function () {
     User::forceCreate( [
@@ -47,12 +47,12 @@ Route::get( '/create', function () {
     ] );
 } );
 
-Route::get('/tokenc', function(){
-    $user = User::find(5);
-    $user->api_token = Str::random(80);
+Route::get( '/tokenc', function () {
+    $user = User::find( 5 );
+    $user->api_token = Str::random( 80 );
     $user->save();
 
-    $user = User::find(6);
-    $user->api_token = Str::random(80);
+    $user = User::find( 6 );
+    $user->api_token = Str::random( 80 );
     $user->save();
-});
+} );
