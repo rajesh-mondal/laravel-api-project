@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\UserController;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -32,6 +33,8 @@ Route::middleware( 'auth:api' )->group( function () {
 Route::middleware( 'auth:api' )->get( '/user', function ( Request $request ) {
     return $request->user();
 } );
+
+Route::post('/token',[UserController::class,'generateToken']);
 
 Route::get( '/create', function () {
     User::forceCreate( [
